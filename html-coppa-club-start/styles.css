@@ -1,0 +1,105 @@
+.logo {
+  position: absolute;
+  width: auto;
+  text-align: left;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.coppa-club {
+  width: 20%;
+}
+
+nav {
+  color: teal;
+  text-align: center;
+  margin: 100px;
+}
+
+li {
+  display: inline;
+  font-size: 22px;
+  margin: 100px;
+}
+
+section {
+}
+
+h2 {
+  color: teal;
+  font-family: "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
+    Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 35px;
+}
+
+p {
+  color: teal;
+  font-family: "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
+    Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.about-bold {
+  font-weight: bold;
+}
+
+.menu-list {
+  font-weight: bold;
+  border-style: dotted;
+  border: teal, 0.5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.teal-bground {
+  background-color: teal;
+}
+
+.map {
+  width: 50%;
+  margin-left: 0%;
+}
+
+.white-text {
+  color: white;
+}
+
+form {
+  text-align: center;
+}
+
+.book-now {
+  border: teal;
+  border-style: double;
+  padding: 20px;
+}
+
+/* fix color */
+address {
+  color: white;
+  text-align: center;
+}
+
+.bottom-images {
+  width: 33%;
+  display: inline;
+}
+
+.social {
+  width: auto;
+  display: inline;
+  text-align: center;
+}
+
+.footer {
+  display: inline-block;
+  vertical-align: top;
+  margin: auto;
+  width: 33%;
+}
