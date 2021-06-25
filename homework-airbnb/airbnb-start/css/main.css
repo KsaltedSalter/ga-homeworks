@@ -1,0 +1,147 @@
+/*
+google font: Nunito
+
+brand red: #ff5358
+dark red: #e00007
+background grey: #efefef
+title grey: #edefed
+footer grey: #2B2D2E
+*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+}
+
+header .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(..//images/melbourne.jpg);
+  background-size: cover;
+  height: 800px;
+  color: white;
+}
+
+header h1 {
+  margin-bottom: 0;
+  font-size: 50px;
+}
+
+header button {
+  color: white;
+  background-color: #e00007;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+}
+
+.locals-title {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #efefef;
+  margin-top: 20px;
+}
+
+.locals-container {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.locals {
+  display: flex;
+  width: 900px;
+}
+
+.hood {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto 50px;
+  margin-bottom: 50px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  background-color: #edefed;
+  margin: 10px;
+  width: 33%;
+  height: 500px;
+}
+
+.fitz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(..//images/fitzroy.jpg);
+  background-size: cover;
+  height: 100%;
+  color: white;
+}
+
+.kilda {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(..//images/st-kilda.jpg);
+  background-size: cover;
+  height: 100%;
+  color: white;
+}
+
+.district {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(..//images/central-business-district.jpg);
+  background-size: cover;
+  height: 100%;
+  color: white;
+}
+
+.hood-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hood-btn {
+  background-color: #e00007;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 5px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: #2b2d2e;
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 50px;
+}
