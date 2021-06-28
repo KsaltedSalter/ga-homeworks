@@ -1,0 +1,125 @@
+/*background color = #fafafa*/
+/*button blue = #3897f0*/
+/*border color = #e6e6e6*/
+/*footer link color = #003569*/
+/*text grey color = #999*/
+* {
+  box-sizing: border-box;
+}
+
+body,
+input {
+  font-family: "Karla", sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  margin: 50px 150px;
+}
+
+/*i got everything to be in a column when in media but they are not in a line?
+not too sure what happend there*/
+@media screen and (max-width: 500px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .sign-up {
+    width: 350px;
+  }
+
+  .log-in {
+    width: 350px;
+  }
+
+  .app-stores {
+    display: flex;
+    justify-content: center;
+  }
+  .app-stores img {
+    margin: auto 5px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+  nav ul {
+    display: inherit;
+    flex-wrap: wrap;
+  }
+  nav p {
+    text-align: center;
+  }
+}
+section .phones {
+  margin: 50px;
+  width: 300px;
+}
+
+section {
+  text-align: center;
+}
+section .sign-up {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 50px;
+  border: 2px solid #e6e6e6;
+  color: #999;
+  font-size: 15px;
+  font-weight: bold;
+}
+section .sign-up button {
+  background-color: #3897f0;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 15px;
+}
+section .sign-up a {
+  text-decoration: none;
+  background-color: #3897f0;
+  color: white;
+  font-size: 15px;
+  padding: 5px;
+}
+section .sign-up form {
+  display: inherit;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100px;
+}
+section .sign-up form input {
+  border-color: solid #e6e6e6;
+}
+section .log-in {
+  text-align: center;
+  border: 2px solid #e6e6e6;
+  height: 60px;
+  padding-top: 15px;
+}
+section .get-app {
+  margin-top: 50px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+nav ul {
+  display: inherit;
+  justify-content: space-between;
+  list-style: none;
+  width: 66%;
+}
+nav ul li {
+  color: #003569;
+}
+nav p {
+  color: #999;
+}
+
+/*# sourceMappingURL=main.css.map */
