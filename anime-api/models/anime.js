@@ -15,6 +15,8 @@ const animeSchema = new mongoose.Schema({
   mainProtagonist: String,
   releaseYear: Number,
   completed: Boolean,
+  genre: String,
+  voiceActor: [{ type: mongoose.Types.ObjectId, ref: "VoiceActor" }],
   comments: [commentSchema]
 });
 
