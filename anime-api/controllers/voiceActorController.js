@@ -4,18 +4,18 @@ import { removedAdded } from "./helpers.js";
 
 export const getAllVoiceActors = async (_request, response, next) => {
   try {
-    const actors = await voiceActor.find();
+    const actors = await VoiceActor.find();
     return response.status(200).json(actors);
   } catch (err) {
     next(err);
   }
 };
 
-export const getAllAnimeForVoiceActor = async (_request, response, next) => {
+export const getAllAnimeForVoiceActor = async (request, response, next) => {
   const id = request.params.id;
   try {
-    const actor = await voiceActor.findById(id).populate("anime");
-    return response.status(200).json(actor.anime);
+    const actors = await VoiceActor.findById(id).populate("anime");
+    return response.status(200).json(actors.anime);
   } catch (err) {
     next(err);
   }
@@ -23,7 +23,7 @@ export const getAllAnimeForVoiceActor = async (_request, response, next) => {
 
 export let createVoiceActor = async (request, response, next) => {
   try {
-    const newVoiceActor = await voiceActor.create(request.body);
+    const newVoiceActor = await VoiceActor.create(request.body);
     await Anime.updateMany(
       { _id: newVoiceActor.anime },
       { $push: { voiceActor: newVoiceActor._id } }
@@ -64,7 +64,7 @@ export const deleteSingleVoiceActor = async (request, response, next) => {
     );
     await Anime.updateMany(
       { _id: animeToRemove },
-      { $pull: { voiceActor: voiceActor._id } }
+      { $pull: { voiceActor: deleteVoiceActor._id } }
     );
     return response.status(200).json(deleteVoiceActor);
   } catch (err) {
@@ -75,7 +75,7 @@ export const deleteSingleVoiceActor = async (request, response, next) => {
 export const updateSingleVoiceActor = async (request, response, next) => {
   const id = request.params.id;
   try {
-    const updateVoiceActor = await voiceActor.findByIdAndUpdate(id);
+    const updateVoiceActor = await VoiceActor.findByIdAndUpdate(id);
     if (!updateVoiceActor) {
       return response
         .status(404)
@@ -90,7 +90,7 @@ export const updateSingleVoiceActor = async (request, response, next) => {
 
     await Anime.updateMany(
       { _id: removedAnime },
-      { $pull: { voiceActor: voiceActor._id } }
+      { $pull: { voiceActor: updateVoiceActor._id } }
     );
     await Anime.updateMany(
       { _id: addedAnime },
