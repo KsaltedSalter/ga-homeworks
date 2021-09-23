@@ -4,7 +4,7 @@ export let createAnimeComment = async (request, response, next) => {
   try {
     const id = request.params.id;
     const anime = await Anime.findById(id);
-    const newComment = request.body;
+    const newComment = { ...request.body, createdBy: request.currentUser };
 
     if (!anime) {
       return response
@@ -33,6 +33,11 @@ export let deleteAnimeComment = async (request, response, next) => {
     if (!comment) {
       return response.status(404).send({ message: "No Comment Baka" });
     }
+    if (!comment.createdBy.equals(request.currentUser._id)) {
+      return response
+        .status(404)
+        .send({ message: "Unauthorised can't delete comment" });
+    }
     comment.remove();
     const savedAnime = await anime.save();
     return response.status(201).json(savedAnime);
@@ -54,6 +59,11 @@ export let updateAnimeComment = async (request, response, next) => {
     }
     if (!comment) {
       return response.status(404).send({ message: "No Comment Baka" });
+    }
+    if (!comment.createdBy.equals(request.currentUser._id)) {
+      return response
+        .status(404)
+        .send({ message: "Unauthorised can't change comment" });
     }
     comment.set(request.body);
     const savedAnime = await anime.save();

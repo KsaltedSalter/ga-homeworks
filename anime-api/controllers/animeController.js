@@ -13,7 +13,10 @@ export const getAllAnime = async (_request, response, next) => {
 
 export let createAnime = async (request, response, next) => {
   try {
-    const newAnime = await Anime.create(request.body);
+    const newAnime = await Anime.create({
+      ...request.body,
+      createdBy: request.currentUser
+    });
     await VoiceActor.updateMany(
       { _id: newAnime.Voicector },
       { $push: { anime: newAnime._id } }
@@ -47,14 +50,24 @@ export const deleteSingleAnime = async (request, response, next) => {
       .send({ message: "Anime cannot be found check again!" });
   }
   try {
-    const deleteAnime = await Anime.findByIdAndDelete(id);
+    const deleteAnime = await Anime.findById(id);
+    console.log(deleteAnime.createdBy);
+    console.log(request.currentUser._id);
+    if (!deleteAnime.createdBy.equals(request.currentUser._id)) {
+      return response
+        .status(404)
+        .send({ message: "can't delete this hot anime" });
+    }
+
     const voiceActorsToRemove = deleteAnime.voiceActor.map((voiceActor) =>
       voiceActor.toString()
     );
     await VoiceActor.updateMany(
       { _id: voiceActorsToRemove },
-      { $pull: { anime: anime._id } }
+      { $pull: { anime: deleteAnime._id } }
     );
+
+    await deleteAnime.remove();
     return response.status(200).json(deleteAnime);
   } catch (err) {
     next(err);
@@ -69,16 +82,23 @@ export const updateSingleAnime = async (request, response, next) => {
       .send({ message: "Anime cannot be found check again!" });
   }
   try {
-    const updateAnime = await Anime.findByIdAndUpdate(id, request.body, {
+    const updateAnime = await Anime.findById(id, request.body, {
       new: true
     });
+    console.log(updateAnime.createdBy);
+    console.log(request.currentUser._id);
+    if (updateAnime.createdBy !== request.currentUser._id) {
+      return response
+        .status(404)
+        .send({ message: "can't add any spicy details to this anime" });
+    }
     const [removedVoiceActor, addedVoiceActor] = removedAdded(
       updateAnime.voiceActor.map((voiceActor) => voiceActor.toString()),
       request.body.actors
     );
 
     updateAnime.set(request.body);
-    const savedAnime = updateAnime.save();
+    const savedAnime = await updateAnime.save();
 
     await VoiceActor.updateMany(
       { _id: removedVoiceActor },
@@ -88,7 +108,7 @@ export const updateSingleAnime = async (request, response, next) => {
       { _id: addedVoiceActor },
       { $push: { anime: savedAnime._id } }
     );
-    return response.status(200).json(updateAnime);
+    return response.status(200).json(savedAnime);
   } catch (err) {
     next(err);
   }
